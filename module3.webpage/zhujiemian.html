@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穷游网</title>
+    <link href="css/sui-themes-green.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/sui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_zh.js"></script>
+    <script src="js/additional-methods.js"></script>
+
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script src="js/jquery-ui.js"></script>
+
+    <style>
+
+    p.ex1
+    {
+    font: bold 12px/30px;
+    font-family: "微软雅黑";
+    }
+    </style>
+    <script>
+
+    $(function() {
+      $( "#datepicker" ).datepicker();
+      $( "#datepicker1" ).datepicker();
+      $( "#datepicker2" ).datepicker();
+    });
+    $(document).ready(function(){
+      $("#hotelbtn").click(function(){
+        $("#hotelpage").show();
+        $("#accuratesearch").hide();
+        $("#flurrysearch").show();
+        $("#planepage").hide();
+      });
+      $("#planebtn").click(function(){
+        $("#planepage").show();
+        $("#accuratesearch1").hide();
+        $("#flurrysearch1").show();
+        $("#hotelpage").hide();
+      });
+      $("#accuratebtn").click(function(){
+        $("#accuratesearch").show();
+        $("#flurrysearch").hide();
+      });
+      $("#flurrybtn").click(function(){
+        $("#accuratesearch").hide();
+        $("#flurrysearch").show();
+      });
+      $("#accuratebtn1").click(function(){
+        $("#accuratesearch1").show();
+        $("#flurrysearch1").hide();
+      });
+      $("#flurrybtn1").click(function(){
+        $("#accuratesearch1").hide();
+        $("#flurrysearch1").show();
+      });
+    });
+
+    function cal()
+    {
+      var singleprice = document.getElementById("singleprice").innerHTML;
+      singleprice = singleprice.replace("¥","");
+      var amount = document.getElementById("amount").value;
+      var totalprice=Number(singleprice)*amount;
+      document.getElementById("totalprice").innerHTML = totalprice.toString();
+    };
+    function cal1()
+    {
+      var singleprice = document.getElementById("singleprice1").innerHTML;
+      singleprice = singleprice.replace("¥","");
+      var amount = document.getElementById("amount1").value;
+      var totalprice=Number(singleprice)*amount;
+      document.getElementById("totalprice1").innerHTML = totalprice.toString();
+    };
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default" style="background-color:steelblue;height:7px;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span><p style="color:white;font-weight:bold;font-size:40px;">Q</p></span></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#" style="color:white;"><p class="ex1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span > 通知</p><span class="sr-only">(current)</span></a></li>
+            <li><a href="#" style="color:white;"><p class="ex1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 我的</p></a></li>
+            <li><a href="#" style="color:white;" id="hotelbtn"><p class="ex1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 酒店</p></a></li>
+            <li><a href="#" style="color:white;" id="planebtn"><p class="ex1"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> 机票</p></a></li>
+            <li><a href="#" style="color:white;"><p class="ex1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查找</p></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <hr style="height:3px;background-color: steelblue">
+    <div id="hotelpage">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7" id="left">
+            <div class="panel panel-primary" id="hotel">
+              <div class="panel-heading" style="height:35px;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 酒店</p></div>
+              <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                  <ul class="nav nav-pills nav-justified">
+                    <li ><a href="#" id="flurrybtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>模糊搜索</a></li>
+                    <li><a href="#" id="accuratebtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>精确搜索</a></li>
+                  </ul><br><br><br>
+                  <div id="flurrysearch">
+                        <div class="form-group">
+                          <label for="firstname" class="col-md-2 control-label">目的地</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="firstname"
+                            placeholder="中文/拼音">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label for="firstname" class="col-md-4 control-label">入住日期</label>
+                            <div class="col-md-2">
+                              <input type="text" id="datepicker">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="firstname" class="col-md-4 control-label">入住日期</label>
+                            <div class="col-md-2">
+                              <input type="text" id="datepicker1">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-offset-9 col-md-2">
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                          </div>
+                        </div>
+                  </div>
+                  <div id="accuratesearch">
+                        <div class="form-group">
+                          <label for="firstname" class="col-md-2 control-label">目的地</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="firstname"
+                            placeholder="中文/拼音">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="firstname" class="col-md-2 control-label">酒店名称</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="firstname"
+                            placeholder="中文/拼音">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-offset-9 col-md-2">
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                          </div>
+                        </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+    			    <div class="carousel slide" id="carousel" style="height:300px;">
+    				    <ol class="carousel-indicators">
+    					    <li class="active" data-slide-to="0" data-target="#carousel-13124">
+    					    </li>
+    					    <li data-slide-to="1" data-target="#carousel-13124">
+    					    </li>
+    					    <li data-slide-to="2" data-target="#carousel-13124">
+    					    </li>
+    				    </ol>
+    				    <div class="carousel-inner">
+    					    <div class="item active">
+    						    <img alt="" src="images/1.jpg" >
+    						      <div class="carousel-caption">
+    						      </div>
+    					    </div>
+    					    <div class="item">
+    						    <img alt="" src="images/2.jpg" >
+    						      <div class="carousel-caption">
+    						      </div>
+    					    </div>
+                  <div class="item">
+                    <img alt="" src="images/2.jpg" >
+                    <div class="carousel-caption">
+                    </div>
+                  </div>
+    				    </div>
+                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+    		      </div>
+          </div>
+        </div>
+      </div>
+      <span><img src="images/city.png" width="500" height="100"><hr style="height:3px;background-color: steelblue;" ></span>
+      <div class="container">
+        <div class="row">
+          <ul class="nav nav-tabs">
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>价格</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>星级</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>热门</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>评分</a></li>
+          </ul>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2" >
+                  <img src="images/4.jpg" width="250px" height="250px">
+                </div>
+                <div class="col-md-6" >
+                  <h3 style="color:steelblue;"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>紫金港国际饭店</h3>
+                  <p>地址：杭州 西湖区 申花路796号 ，近紫荆花路，浙江大学紫金港校区。</p>
+                </div>
+                <div class=" clo-md-4">
+                  <table>
+                    <tr>
+                      <td style="text-align:left;">起价:</td>
+                      <td style="text-align:right;"> <br>   </td>
+                      <td>评分:</td>
+                    </tr>
+                    <tr>
+                      <td><sup>¥</sup>  <p style="font-size:30px;color:orange;font-weight:bold;">399 <br></p></td>
+                      <td> <br>   </td>
+                      <td><sup>/5</sup><p style="font-size:30px;color:orange;font-weight:bold;"> 4.5</p></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+                  <table class="table table-hover"  style="width:94%;">
+                    <thead>
+                      <tr>
+                        <th>房型</th>
+                        <th>房价</th>
+                        <th>预订</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>双人间</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;" id="singleprice">399¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>大床房</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">499¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div class="collapse" id="collapseExample" style="width:94%;">
+                          <div class="well">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>入离日期：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 2016-06-02  至  2016-06-03   1晚</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>房间数量：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  <input type="number" name="quantity" min="1" max="10" id="amount" onchange="return cal()">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>房型信息：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  双人间
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-offset-7 col-md-2" >
+                                  <p><sup>订单总额：¥</sup></p>
+                                </div>
+                                <div class="col-md-1" >
+                                  <p style="font-size:30px;color:orange;font-weight:bold;" id="totalprice">0</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-offset-9 col-md-3" >
+                                  <button type="button" class="btn btn-warning btn-lg">支付</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2" >
+                  <img src="images/4.jpg" width="250px" height="250px">
+                </div>
+                <div class="col-md-6" >
+                  <h3 style="color:steelblue;"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>紫金港国际饭店</h3>
+                  <p>地址：杭州 西湖区 申花路796号 ，近紫荆花路，浙江大学紫金港校区。</p>
+                </div>
+                <div class=" clo-md-4">
+                  <table>
+                    <tr>
+                      <td style="text-align:left;">起价:</td>
+                      <td style="text-align:right;"> <br>   </td>
+                      <td>评分:</td>
+                    </tr>
+                    <tr>
+                      <td><sup>¥</sup>  <p style="font-size:30px;color:orange;font-weight:bold;">399 <br></p></td>
+                      <td> <br>   </td>
+                      <td><sup>/5</sup><p style="font-size:30px;color:orange;font-weight:bold;">4.5 </p></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+                  <table class="table table-hover"  style="width:94%;">
+                    <thead>
+                      <tr>
+                        <th>房型</th>
+                        <th>房价</th>
+                        <th>预订</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>双人间</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">399¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                          我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>大床房</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">499¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div class="collapse" id="collapseExample1" style="width:94%;">
+                          <div class="well">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>入离日期：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 2016-06-02  至  2016-06-03   1晚</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>房间数量：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  <input type="number" name="quantity" min="1" max="10">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>房型信息：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  双人间
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-2" >
+                                  <p><sup>订单总额：¥</sup></p>
+                                </div>
+                                <div class="col-md-1" >
+                                  <p style="font-size:30px;color:orange;font-weight:bold;">499</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-4" >
+                                  <button type="button" class="btn btn-warning btn-lg">支付</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2" >
+                  <img src="images/4.jpg" width="250px" height="250px">
+                </div>
+                <div class="col-md-6" >
+                  <h3 style="color:steelblue;"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>紫金港国际饭店</h3>
+                  <p>地址：杭州 西湖区 申花路796号 ，近紫荆花路，浙江大学紫金港校区。</p>
+                </div>
+                <div class=" clo-md-4">
+                  <table>
+                    <tr>
+                      <td style="text-align:left;">起价:</td>
+                      <td style="text-align:right;"> <br>   </td>
+                      <td>评分:</td>
+                    </tr>
+                    <tr>
+                      <td><sup>¥</sup>  <p style="font-size:30px;color:orange;font-weight:bold;">399 <br></p></td>
+                      <td> <br>   </td>
+                      <td><sup>/5</sup><p style="font-size:30px;color:orange;font-weight:bold;">4.5 </p></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+                  <table class="table table-hover"  style="width:94%;">
+                    <thead>
+                      <tr>
+                        <th>房型</th>
+                        <th>房价</th>
+                        <th>预订</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>双人间</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">399¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                          我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>大床房</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">499¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div class="collapse" id="collapseExample2" style="width:94%;">
+                          <div class="well">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>入离日期：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 2016-06-02  至  2016-06-03   1晚</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>房间数量：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  <input type="number" name="quantity" min="1" max="10">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>房型信息：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  双人间
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-2" >
+                                  <p><sup>订单总额：¥</sup></p>
+                                </div>
+                                <div class="col-md-1" >
+                                  <p style="font-size:30px;color:orange;font-weight:bold;">499</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-4" >
+                                  <button type="button" class="btn btn-warning btn-lg">支付</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="planepage">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7" id="left">
+            <div class="panel panel-primary" id="hotel">
+              <div class="panel-heading" style="height:35px;"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> 机票</p></div>
+              <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                  <ul class="nav nav-pills nav-justified">
+                    <li ><a href="#" id="flurrybtn1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>模糊搜索</a></li>
+                    <li><a href="#" id="accuratebtn1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>精确搜索</a></li>
+                  </ul><br><br><br>
+                  <div id="flurrysearch1">
+                    <div class="form-group">
+                      <label for="firstname" class="col-md-2 control-label">出发城市</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="firstname"
+                            placeholder="中文/拼音">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="firstname" class="col-md-2 control-label">到达城市</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="firstname"
+                          placeholder="中文/拼音">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-6">
+                        <label for="firstname" class="col-md-4 control-label">出发日期</label>
+                          <div class="col-md-2">
+                            <input type="text" id="datepicker2">
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-offset-9 col-md-2">
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="accuratesearch1">
+                    <div class="form-group">
+                      <label for="firstname" class="col-md-2 control-label">飞机航班号</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="firstname"
+                          placeholder="中文/拼音">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-offset-9 col-md-2">
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="carousel slide" id="carousel1" style="height:300px;">
+              <ol class="carousel-indicators">
+                <li class="active" data-slide-to="0" data-target="#carousel-13124">
+                </li>
+                <li data-slide-to="1" data-target="#carousel-13124">
+                </li>
+                <li data-slide-to="2" data-target="#carousel-13124">
+                </li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img alt="" src="images/5.jpg" >
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                  <img alt="" src="images/6.jpg" >
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                  <img alt="" src="images/7.jpg" >
+                  <div class="carousel-caption">
+                  </div>
+                </div>
+              </div>
+              <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel1" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span><img src="images/city.png" width="500" height="100"><hr style="height:3px;background-color: steelblue;" ></span>
+      <div class="container">
+        <div class="row">
+          <ul class="nav nav-tabs">
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>价格</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>起飞时间</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>是否中转</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>航空公司</a></li>
+          </ul>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2" >
+                  <img src="images/11.jpg" width="250px" height="150px">
+                </div>
+                <div class="col-md-7" >
+                  <h3 style="color:steelblue;"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>航班号：JD5170<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-map-marker" aria-hidden="true">杭州-北京</h3>
+                  <p>中国南方航空公司 </p>
+                  <p>飞行时间：</p>
+                  <p style="font-size:30px;color:black;font-weight:bold;">18:30 - 20:30 <br></p>
+                </div>
+                <div class="clo-md-3">
+                  <table>
+                    <tr>
+                      <td style="text-align:left;">起价:</td>
+                      <td style="text-align:right;"> <br>   </td>
+                      <td>航空公司评分:</td>
+                    </tr>
+                    <tr>
+                      <td><sup>¥</sup>  <p style="font-size:30px;color:orange;font-weight:bold;">399 <br></p></td>
+                      <td> <br>   </td>
+                      <td><sup>/5</sup><p style="font-size:30px;color:orange;font-weight:bold;">4.5 </p></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+                  <table class="table table-hover"  style="width:94%;">
+                    <thead>
+                      <tr>
+                        <th>舱型</th>
+                        <th>价格</th>
+                        <th>预订</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>经济舱</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">399¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>头等舱</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">499¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div class="collapse" id="collapseExample3" style="width:94%;">
+                          <div class="well">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>出发日期：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 2016-06-02 </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>飞行时间：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 18:30 - 20:30 </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>机票数量：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  <input type="number" name="quantity" min="1" max="10">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>舱型信息：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  经济舱
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-2" >
+                                  <p><sup>订单总额：¥</sup></p>
+                                </div>
+                                <div class="col-md-1" >
+                                  <p style="font-size:30px;color:orange;font-weight:bold;">499</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-4" >
+                                  <button type="button" class="btn btn-warning btn-lg">支付</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2" >
+                  <img src="images/11.jpg" width="250px" height="150px">
+                </div>
+                <div class="col-md-6" >
+                  <h3 style="color:steelblue;"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>航班号：JD5170<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-map-marker" aria-hidden="true">杭州-北京</h3>
+                  <p>中国南方航空公司 </p>
+                  <p>飞行时间：</p>
+                  <p style="font-size:30px;color:black;font-weight:bold;">18:30 - 20:30 <br></p>
+                </div>
+                <div class="clo-md-4">
+                  <table>
+                    <tr>
+                      <td style="text-align:left;">起价:</td>
+                      <td style="text-align:right;"> <br>   </td>
+                      <td>航空公司评分:</td>
+                    </tr>
+                    <tr>
+                      <td><sup>¥</sup>  <p style="font-size:30px;color:orange;font-weight:bold;">399 <br></p></td>
+                      <td> <br>   </td>
+                      <td><sup>/5</sup><p style="font-size:30px;color:orange;font-weight:bold;">4.5 </p></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+                  <table class="table table-hover"  style="width:94%;">
+                    <thead>
+                      <tr>
+                        <th>舱型</th>
+                        <th>价格</th>
+                        <th>预订</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>经济舱</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">399¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>头等舱</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">499¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div class="collapse" id="collapseExample4" style="width:94%;">
+                          <div class="well">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>出发日期：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 2016-06-02 </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>飞行时间：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 18:30 - 20:30 </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>机票数量：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  <input type="number" name="quantity" min="1" max="10">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>舱型信息：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  经济舱
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-2" >
+                                  <p><sup>订单总额：¥</sup></p>
+                                </div>
+                                <div class="col-md-1" >
+                                  <p style="font-size:30px;color:orange;font-weight:bold;">499</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-4" >
+                                  <button type="button" class="btn btn-warning btn-lg">支付</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-2" >
+                  <img src="images/11.jpg" width="250px" height="150px">
+                </div>
+                <div class="col-md-6" >
+                  <h3 style="color:steelblue;"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>航班号：JD5170<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-map-marker" aria-hidden="true">杭州-北京</h3>
+                  <p>中国南方航空公司 </p>
+                  <p>飞行时间：</p>
+                  <p style="font-size:30px;color:black;font-weight:bold;">18:30 - 20:30 <br></p>
+                </div>
+                <div class="clo-md-4">
+                  <table>
+                    <tr>
+                      <td style="text-align:left;">起价:</td>
+                      <td style="text-align:right;"> <br>   </td>
+                      <td>航空公司评分:</td>
+                    </tr>
+                    <tr>
+                      <td><sup>¥</sup>  <p style="font-size:30px;color:orange;font-weight:bold;">399 <br></p></td>
+                      <td> <br>   </td>
+                      <td><sup>/5</sup><p style="font-size:30px;color:orange;font-weight:bold;">4.5 </p></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+                  <table class="table table-hover"  style="width:94%;">
+                    <thead>
+                      <tr>
+                        <th>舱型</th>
+                        <th>价格</th>
+                        <th>预订</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>经济舱</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">399¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample5" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>头等舱</td>
+                        <td><p style="font-size:20px;color:orange;font-weight:bold;">499¥</p></td>
+                        <td>
+                          <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample5" aria-expanded="false" aria-controls="collapseExample">
+                            我要预定
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div class="collapse" id="collapseExample5" style="width:94%;">
+                          <div class="well">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>出发日期：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 2016-06-02 </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>飞行时间：</p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p> 18:30 - 20:30 </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>机票数量：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  <input type="number" name="quantity" min="1" max="10">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-2" >
+                                  <p>舱型信息：</p>
+                                </div>
+                                <div class="col-md-2" >
+                                  经济舱
+                                </div>
+                              </div>
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-2" >
+                                  <p><sup>订单总额：¥</sup></p>
+                                </div>
+                                <div class="col-md-1" >
+                                  <p style="font-size:30px;color:orange;font-weight:bold;">499</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-offset-8 col-md-4" >
+                                  <button type="button" class="btn btn-warning btn-lg">支付</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <nav>
+              <ul class="pagination">
+                <li>
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+
+    </script>
+    <script>
+      $(document).ready(function(){
+        $("#plane").hide();
+        $("#accuratesearch").hide();
+        $("#planepage").hide();
+      });
+    </script>
+  </body>
+</html>
